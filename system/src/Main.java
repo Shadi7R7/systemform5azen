@@ -3,5 +3,6 @@ public class Main {
 
         System.out.println("test abood");
         System.out.println("test abood2");
+        System.out.println("ggg");
     }
 }

@@ -54,11 +54,6 @@ public class Task {
         this.progress = progress;
     }
 
-    @Override
-    public String toString() {
-        return "Task{" + "quantity=" + quantity + ", taskId=" + taskId + ", product=" + product + ", statue=" + statue + ", progress=" + progress + '}';
-    }
-
 
    
    

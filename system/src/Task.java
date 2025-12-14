@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 
 
 public class Task {
@@ -7,6 +8,7 @@ public class Task {
    private Product product ;
    private String statue = "PENDING" ;// حالةالمهمة
    private double progress = 0 ;
+   private LocalDate startDate;
 
     public Task(int quantity, int taskId, Product product) {
         this.quantity = quantity;
@@ -52,6 +54,15 @@ public class Task {
 
     public void setProgress(double progress) {
         this.progress = progress;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" + "quantity=" + quantity + ", taskId=" + taskId + ", product=" + product + ", statue=" + statue + ", progress=" + progress + '}';
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
 

@@ -1,7 +1,7 @@
-
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Stock {
     
@@ -51,6 +51,8 @@ public class Stock {
     }
     }
     
-    
+    public List<Item> searchItemByName(String keyword){
+        return items.values().stream().filter(i -> i.getName().toLowerCase().contains(keyword.toLowerCase())).collect(Collectors.toList());
+    }
     
 }

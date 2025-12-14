@@ -1,4 +1,3 @@
-
 public class Item {
    private String name;
    private int itemId ; 
@@ -64,6 +63,9 @@ public class Item {
         this.minQuantity = minQuantity;
     }
 
-
+    @Override
+    public String toString() {
+        return "Item {" + "name=" + name + ", itemId=" + itemId + ", category=" + category + ", price=" + price + ", quantity=" + quantity + ", minQuantity=" + minQuantity + '}';
+    }
    
 }

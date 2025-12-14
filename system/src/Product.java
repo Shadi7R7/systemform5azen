@@ -1,15 +1,20 @@
-
 import java.util.*;
 
 public class Product {
     private int id;
     private String nameProduct;
     private HashMap<Item,Integer> item = new HashMap<Item,Integer>();
+
     public Product(int id, String nameProduct) {
         this.id = id;
         this.nameProduct = nameProduct;
     }
-
+       
+    public void addRequirItem (Item item , int qty){
+    
+        this.item.put(item , qty);
+    }
+        
     public HashMap<Item,Integer> getItem() {
         return item;
     }
@@ -34,5 +39,9 @@ public class Product {
         this.nameProduct = nameProduct;
     }
 
-
+    @Override
+    public String toString() {
+        return "Product :\n" + " Product ID = " + id + "\nNameProduct = " + nameProduct + "\nItem = " + item ;
+    }
+    
 }

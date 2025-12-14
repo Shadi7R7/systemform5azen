@@ -1,18 +1,23 @@
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class productLine {
+public class productLine extends Thread {
     private int productLineId;
     private String name;
     private String status = "Active";
     private List<Task> tasks = new ArrayList<Task>();
+    private Stock stock ;
 
-    public productLine(int productLineId, String name) {
+    public productLine(int productLineId, String name, Stock stock) {
         this.productLineId = productLineId;
         this.name = name;
+        this.stock = stock;
     }
-
+    public void addTask (Task task){
+        tasks.add(task);
+    }
+    
+    
     public int getProductLineId() {
         return productLineId;
     }
@@ -21,11 +26,11 @@ public class productLine {
         this.productLineId = productLineId;
     }
 
-    public String getName() {
+    public String getname() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setname(String name) {
         this.name = name;
     }
 
@@ -45,5 +50,56 @@ public class productLine {
         this.tasks = tasks;
     }
     
+    public void run () {
     
+    while (true){
+    
+    if(!status.equals("Active")){
+    
+    try {
+    
+    Thread.sleep(1000);
+    }catch(InterruptedException e){
+        break;
+    }
+    continue ;
+    
+    }
+   for(Task task : tasks){
+       if(task.getStatue().equals("PENDING")){
+       executeTask(task);
+       
+       }
+       
+   }
+   try {
+       Thread.sleep(500);
+   }
+    catch (InterruptedException e){
+    
+    break ;
+    }
+   
+    }
+     
+    
+    }
+    public void executeTask (Task task ){
+        task.setStatue("RUNNING");
+        try {
+        
+        stock.consumeItems(task.getProduct(), task.getQuantity());
+        for(int i=0;i<=100;i+=20){
+            task.setProgress(i);
+            Thread.sleep(400);
+        }
+        stock.addProduct(task.getProduct(), task.getQuantity());
+        task.setStatue("COMPLETED");
+        }catch(Exception e){
+            stock.logError(e.getMessage());
+            task.setStatue("CANCELLD"); 
+        }
+
+    
+}
 }
